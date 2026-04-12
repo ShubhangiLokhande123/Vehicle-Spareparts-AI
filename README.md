@@ -2,28 +2,32 @@
 
 **spareparts.ai** is an intelligent vehicle and spare parts identification platform. By leveraging advanced computer vision and generative AI, the application allows users to identify vehicles and their specific components simply by uploading a photo, streamlining the process of finding compatible replacement parts.
 
+🔗 **Live Website**: [spareparts.ai on GitHub Pages/Vercel (Update link when deployed)](https://github.com/ShubhangiLokhande123/Vehicle-Spareparts-AI)
+
 ## 🎯 Objective
 
 The primary goal of spareparts.ai is to bridge the gap between visual identification and technical specifications in the automotive industry. It aims to help vehicle owners, mechanics, and parts retailers quickly identify exact vehicle generations and find the correct, compatible spare parts without needing to manually search through complex catalogs or decode VIN numbers.
 
 ## ✨ Key Features
 
-- **AI Vehicle Identification**: Upload a photo of any vehicle to identify its Make, Model, Year Range, and Variant with high confidence.
+- **AI Vehicle Identification**: Upload a photo of any vehicle to identify its Make, Model, Year Range, and Variant with high confidence using Google Gemini Vision AI.
 - **Visual Part Recognition**: Identify specific spare parts (e.g., brake pads, oil filters, spark plugs) from images and get detailed technical descriptions.
 - **Compatibility Engine**: Automatically matches identified vehicles with a database of compatible parts from a master catalog.
-- **Identification History**: Keep track of all previously identified vehicles and parts for quick reference.
+- **Identification History & Virtual Garage**: Keep track of all previously identified vehicles and parts for quick reference.
+- **Saved Parts**: Star and save specific parts to a personalized list for easy access later.
 - **Multi-Mode Scanning**: Switch between "Vehicle Mode" for full car identification and "Part Mode" for component-level scanning.
-- **Demo Mode**: A built-in fail-safe mode that allows users to explore the application's features using mocked data even when database connectivity is limited.
-- **Secure Authentication**: User accounts and data persistence powered by Supabase.
+- **Demo/Mock Mode**: A built-in fail-safe mode that allows users to explore the application's features using mocked data even when API keys or database connectivity is limited.
+- **Secure Authentication**: User accounts, Google OAuth, and data persistence powered by Supabase.
+- **Fully Responsive UI**: Modern, clean, and responsive design built with Tailwind CSS via NativeWind, adapting beautifully to different screen sizes.
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: React 18 with TypeScript
-- **Styling**: Tailwind CSS for a modern, responsive mobile-first UI
-- **AI Engine**: Google Gemini (Generative AI) for multimodal image analysis and structured data extraction
+- **Framework**: React Native with Expo
+- **Styling**: Tailwind CSS / NativeWind for a modern, responsive mobile-first UI
+- **AI Engine**: Google Gemini (Generative AI 2.5 Flash) for multimodal image analysis and structured data extraction
 - **Backend/Database**: Supabase (PostgreSQL) for user data and parts catalog
 - **Storage**: Supabase Storage for vehicle and part image hosting
-- **Animations**: Framer Motion for smooth UI transitions
+- **Language**: TypeScript
 
 ## 🚀 How It Works
 
@@ -41,12 +45,12 @@ The primary goal of spareparts.ai is to bridge the gap between visual identifica
 - A Gemini AI API Key
 
 ### Environment Variables
-Create a `.env` file in the root directory and add the following:
+Create a `.env` file in the root directory (based on `.env.example`) and add the following:
 
 ```env
-VITE_SUPABASE_URL=your_supabase_project_url
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
-API_KEY=your_gemini_api_key
+EXPO_PUBLIC_SUPABASE_URL=your_supabase_project_url
+EXPO_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+EXPO_PUBLIC_GEMINI_API_KEY=your_gemini_api_key
 ```
 
 ### Database Setup
@@ -55,77 +59,8 @@ Execute the provided `database.sql` script in your Supabase SQL Editor to set up
 ### Running Locally
 ```bash
 npm install
-npm run dev
+npm run android # Or npm run ios / npm run web
 ```
-
-## 📱 Mobile App (APK) Generation
-
-To package **spareparts.ai** as a mobile application for Android using Flutter, follow these steps:
-
-### 1. Prerequisites
-- [Flutter SDK](https://docs.flutter.dev/get-started/install) installed on your machine.
-- Android Studio with Android SDK and Command Line Tools.
-
-### 2. Create Flutter Wrapper
-Create a new Flutter project to act as a WebView wrapper for the web application:
-
-```bash
-flutter create spareparts_mobile
-cd spareparts_mobile
-```
-
-### 3. Add WebView Dependency
-Add the `webview_flutter` package to your `pubspec.yaml`:
-
-```bash
-flutter pub add webview_flutter
-```
-
-### 4. Configure WebView
-In your `lib/main.dart`, set up the WebView to point to your hosted application URL:
-
-```dart
-// Example snippet for main.dart
-import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
-
-void main() => runApp(MaterialApp(home: WebViewApp()));
-
-class WebViewApp extends StatefulWidget {
-  @override
-  State<WebViewApp> createState() => _WebViewAppState();
-}
-
-class _WebViewAppState extends State<WebViewApp> {
-  late final WebViewController controller;
-
-  @override
-  void initState() {
-    super.initState();
-    controller = WebViewController()
-      ..setJavaScriptMode(JavaScriptMode.unrestricted)
-      ..loadRequest(Uri.parse('https://your-app-url.run.app'));
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(child: WebViewWidget(controller: controller)),
-    );
-  }
-}
-```
-
-### 5. Generate APK
-Run the following command to generate a production-ready release APK:
-
-```bash
-flutter build apk --release
-```
-The generated APK will be located at:
-`build/app/outputs/flutter-apk/app-release.apk`
-
----
 
 ## 📜 License
 
