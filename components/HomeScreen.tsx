@@ -39,7 +39,7 @@ export default function HomeScreen({
       if (error) throw error;
 
       if (data) {
-        const formattedData: VehicleIdentification[] = data.map(item => ({
+        const formattedData: VehicleIdentification[] = data.map((item: any) => ({
           identification_id: item.id,
           created_at: item.created_at,
           user_confirmed: item.user_confirmed,

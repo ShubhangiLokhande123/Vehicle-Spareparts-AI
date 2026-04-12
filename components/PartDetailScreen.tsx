@@ -18,7 +18,7 @@ export default function PartDetailScreen({ part, onBack }: PartDetailScreenProps
 
   const checkIfSaved = async () => {
       try {
-          const { data: { session } } = await supabase?.auth.getSession();
+          const { data: { session } } = await supabase.auth.getSession();
           if (!session?.user) return;
 
           const { data, error } = await supabase
@@ -39,7 +39,7 @@ export default function PartDetailScreen({ part, onBack }: PartDetailScreenProps
   const handleToggleSave = async () => {
       setLoading(true);
       try {
-          const { data: { session } } = await supabase?.auth.getSession();
+          const { data: { session } } = await supabase.auth.getSession();
           if (!session?.user) {
               Alert.alert("Authentication Required", "Please sign in to save parts.");
               setLoading(false);
