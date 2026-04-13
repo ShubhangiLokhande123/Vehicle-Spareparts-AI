@@ -25,4 +25,18 @@ dist-ssr
 
 # Expo
 .expo/
-.env
+
+# InsForge & AI agent skills
+.insforge
+.agent
+.agents
+.augment
+.claude
+.cline
+.github/copilot*
+.kilocode
+.qoder
+.qwen
+.roo
+.trae
+.windsurf

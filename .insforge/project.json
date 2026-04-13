@@ -1,0 +1,9 @@
+{
+  "project_id": "oss-project",
+  "project_name": "oss-project",
+  "org_id": "oss-org",
+  "appkey": "oss",
+  "region": "local",
+  "api_key": "mock_key",
+  "oss_host": "https://mock.insforge.app"
+}
